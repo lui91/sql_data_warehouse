@@ -39,7 +39,6 @@ WITH
     CLUSTERED COLUMNSTORE INDEX
 )
 GO
-
 CREATE TABLE [dbo].[FactTweet]
 (
     id int IDENTITY,
@@ -84,15 +83,11 @@ CREATE TABLE [dbo].[FactTweet]
 	fire int NOT NULL,
 	earthquake int NOT NULL,
 	cold int NOT NULL,
-	other_weather int NOT NULL,
-    CONSTRAINT FK_TempSales_SalesReason FOREIGN KEY (tweet_key)
-    REFERENCES dbo.DimTweet (tweet_key)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+	other_weather int NOT NULL
 )
 WITH
 (
-    DISTRIBUTION = HASH(id),
+    DISTRIBUTION = HASH(alt_id),
     CLUSTERED COLUMNSTORE INDEX
 )
 GO
